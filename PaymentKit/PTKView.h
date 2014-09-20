@@ -25,18 +25,17 @@
 
 - (BOOL)isValid;
 
-@property (nonatomic, readonly) UIView *opaqueOverGradientView;
 @property (nonatomic, readonly) PTKCardNumber *cardNumber;
 @property (nonatomic, readonly) PTKCardExpiry *cardExpiry;
 @property (nonatomic, readonly) PTKCardCVC *cardCVC;
 @property (nonatomic, readonly) PTKAddressZip *addressZip;
 
-@property IBOutlet UIView *innerView;
-@property IBOutlet UIView *clipView;
-@property IBOutlet PTKTextField *cardNumberField;
-@property IBOutlet PTKTextField *cardExpiryField;
-@property IBOutlet PTKTextField *cardCVCField;
-@property IBOutlet UIImageView *placeholderView;
+@property (retain) IBOutlet UIView *innerView;
+@property (retain) IBOutlet UIView *clipView;
+@property (retain) IBOutlet PTKTextField *cardNumberField;
+@property (retain) IBOutlet PTKTextField *cardExpiryField;
+@property (retain) IBOutlet PTKTextField *cardCVCField;
+@property (retain) IBOutlet UIImageView *placeholderView;
 @property (nonatomic, weak) id <PTKViewDelegate> delegate;
 @property (readonly) PTKCard *card;
 
