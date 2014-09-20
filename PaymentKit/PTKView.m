@@ -7,9 +7,9 @@
 //
 
 #define RGB(r,g,b) [UIColor colorWithRed:r/255.0f green:g/255.0f blue:b/255.0f alpha:1.0f]
-#define DarkGreyColor RGB(0,0,0)
+#define DarkGreyColor RGB(255, 255, 255)
 #define RedColor RGB(253,0,17)
-#define DefaultBoldFont [UIFont boldSystemFontOfSize:17]
+#define DefaultBoldFont [UIFont systemFontOfSize:17]
 
 #define kPTKViewPlaceholderViewAnimationDuration 0.25
 
@@ -119,30 +119,41 @@ static NSString *const kPTKOldLocalizedStringsTableName = @"STPaymentLocalizable
     self.cardNumberField.font = DefaultBoldFont;
 
     [self.cardNumberField.layer setMasksToBounds:YES];
+    if ([self.cardNumberField respondsToSelector:@selector(setAttributedPlaceholder:)]) {
+        self.cardNumberField.attributedPlaceholder = [[NSAttributedString alloc] initWithString:placeHolderText attributes:@{NSForegroundColorAttributeName: [UIColor lightGrayColor]}];
+    }
 }
 
 - (void)setupCardExpiryField
 {
+    NSString *placeHolderText = @"MM/YY";
     self.cardExpiryField = [[PTKTextField alloc] initWithFrame:CGRectMake(kPTKViewCardExpiryFieldStartX, 0, 60, 20)];
     self.cardExpiryField.delegate = self;
-    self.cardExpiryField.placeholder = [self.class localizedStringWithKey:@"placeholder.card_expiry" defaultValue:@"MM/YY"];
+    self.cardExpiryField.placeholder = [self.class localizedStringWithKey:@"placeholder.card_expiry" defaultValue:placeHolderText];
     self.cardExpiryField.keyboardType = UIKeyboardTypeNumberPad;
     self.cardExpiryField.textColor = DarkGreyColor;
     self.cardExpiryField.font = DefaultBoldFont;
 
     [self.cardExpiryField.layer setMasksToBounds:YES];
+    if ([self.cardExpiryField respondsToSelector:@selector(setAttributedPlaceholder:)]) {
+        self.cardExpiryField.attributedPlaceholder = [[NSAttributedString alloc] initWithString:placeHolderText attributes:@{NSForegroundColorAttributeName: [UIColor lightGrayColor]}];
+    }
 }
 
 - (void)setupCardCVCField
 {
+    NSString *placeHolderText = @"CVC";
     self.cardCVCField = [[PTKTextField alloc] initWithFrame:CGRectMake(kPTKViewCardCVCFieldStartX, 0, 55, 20)];
     self.cardCVCField.delegate = self;
-    self.cardCVCField.placeholder = [self.class localizedStringWithKey:@"placeholder.card_cvc" defaultValue:@"CVC"];
+    self.cardCVCField.placeholder = [self.class localizedStringWithKey:@"placeholder.card_cvc" defaultValue:placeHolderText];
     self.cardCVCField.keyboardType = UIKeyboardTypeNumberPad;
     self.cardCVCField.textColor = DarkGreyColor;
     self.cardCVCField.font = DefaultBoldFont;
 
     [self.cardCVCField.layer setMasksToBounds:YES];
+    if ([self.cardCVCField respondsToSelector:@selector(setAttributedPlaceholder:)]) {
+        self.cardCVCField.attributedPlaceholder = [[NSAttributedString alloc] initWithString:placeHolderText attributes:@{NSForegroundColorAttributeName: [UIColor lightGrayColor]}];
+    }
 }
 
 // Checks both the old and new localization table (we switched in 3/14 to PaymentKit.strings).
